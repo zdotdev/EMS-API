@@ -32,6 +32,30 @@ router.get('/:businessId', async (req, res) => {
   }
 })
 
+router.get('/businessIds', async (req, res) => {
+  try {
+    const pipeline = [
+      {
+        $group: {
+          _id: '$businessId',
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          businessId: '$_id',
+          count: 1
+        }
+      }
+    ]
+    const results = await orderModel.aggregate(pipeline)
+    res.status(200).json(results)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
 router.get('/:id', getOrder, (req, res) => {
   try {
     res.json(res.order)

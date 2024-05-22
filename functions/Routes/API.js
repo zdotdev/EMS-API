@@ -67,7 +67,7 @@ router.patch('/:id', getOrder, async (req, res) => {
 })
 router.put('/:id', getOrder, async (req, res) => {
   try {
-    const updatedOrder = await orderModel.findOneAndUpdate(
+    const updatedOrder = await orderModel.findByIdAndUpdate(
       { _id: req.params.id },
       req.body,
       { new: true }
@@ -79,7 +79,7 @@ router.put('/:id', getOrder, async (req, res) => {
 })
 router.delete('/:id', getOrder, async (req, res) => {
   try {
-    await orderModel.findOneAndDelete(req.params.id)
+    await orderModel.findByIdAndDelete(req.params.id)
     res.json({ message: 'Order deleted!' })
   } catch (err) {
     res.status(500).json({ message: err.message })

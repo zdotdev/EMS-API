@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 })
-router.get('/:businessId', async (req, res) => {
+router.get('/business/:businessId', async (req, res) => {
   try {
     const order = await orderModel.findOne()
     res.status(200).json(order)

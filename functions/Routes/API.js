@@ -32,7 +32,7 @@ router.get('/:id', getOrder, (req, res) => {
 })
 router.post('/', async (req, res) => {
   try {
-    if (!req.body.orderItems || !req.body.orderPrices) {
+    if (!req.body.orderItems || !req.body.orderPrices || !req.body.businessId) {
       return res
         .status(400)
         .json({ message: 'Please provide all required fields' })
@@ -40,17 +40,6 @@ router.post('/', async (req, res) => {
     const order = new orderModel(req.body)
     const newOrder = await order.save()
     res.status(201).json({ message: 'Order saved!', newOrder })
-  } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
-})
-router.patch('/:id', getOrder, async (req, res) => {
-  try {
-    if (req.body.orderNumber != null) {
-      req.order.orderNumber = req.body.orderNumber
-    }
-    const updatedOrder = await req.order.save()
-    res.status(200).json({ message: 'Order updated!', updatedOrder })
   } catch (err) {
     res.status(500).json({ message: err.message })
   }

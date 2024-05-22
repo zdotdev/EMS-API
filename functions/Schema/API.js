@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const orderSchema = new Schema({
-  businessName: {
+  businessId: {
     type: String,
     required: true
   },

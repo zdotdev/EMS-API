@@ -3,9 +3,8 @@ const Schema = mongoose.Schema
 
 const orderSchema = new Schema({
   orderNumber: {
-    type: String,
-    required: true,
-    default: mongoose.Types.ObjectId
+    type: mongoose.Types.ObjectId,
+    required: true
   },
   orderDate: {
     type: Date,

@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 const orderSchema = new Schema({
   orderNumber: {
     type: String,
-    required: true
+    required: true,
+    deafault: mongoose.Types.ObjectId
   },
   orderDate: {
     type: Date,

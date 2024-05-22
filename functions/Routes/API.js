@@ -32,11 +32,7 @@ router.get('/:id', getOrder, (req, res) => {
 })
 router.post('/', async (req, res) => {
   try {
-    if (
-      !req.body.orderNumber ||
-      !req.body.orderItems ||
-      !req.body.orderPrices
-    ) {
+    if (!req.body.orderItems || !req.body.orderPrices) {
       return res
         .status(400)
         .json({ message: 'Please provide all required fields' })

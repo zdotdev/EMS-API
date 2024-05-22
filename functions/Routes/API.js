@@ -37,12 +37,6 @@ router.post('/', async (req, res) => {
         .status(400)
         .json({ message: 'Please provide all required fields' })
     }
-    const exsistingOrder = await orderModel.findOne({
-      orderNumber: req.body.orderNumber
-    })
-    if (exsistingOrder) {
-      return res.status(400).json({ message: 'Order already exists' })
-    }
     const order = new orderModel(req.body)
     const newOrder = await order.save()
     res.status(201).json({ message: 'Order saved!', newOrder })

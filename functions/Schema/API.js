@@ -5,7 +5,7 @@ const orderSchema = new Schema({
   orderNumber: {
     type: String,
     required: true,
-    deafault: mongoose.Types.ObjectId
+    default: mongoose.Types.ObjectId
   },
   orderDate: {
     type: Date,

@@ -4,7 +4,14 @@ const BusinessSchema = new mongoose.Schema({
   sales: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Sales' }],
   products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Products' }],
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  violations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Violations' }],
+  violations: [
+    {
+      violation: { type: mongoose.Schema.Types.ObjectId, ref: 'Violations' },
+      violationImage: { type: String, required: true },
+      isPaid: { type: Boolean, required: true },
+      datePaid: { type: Date, required: true }
+    }
+  ],
   businessName: { type: String, required: true },
   businessAddress: { type: String, required: true },
   businessLogo: { type: String, required: true },
